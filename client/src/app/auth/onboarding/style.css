@@ -1,0 +1,12 @@
+.css-u4tvz2-MuiFormLabel-root {
+  color: var(--secondary) !important;
+  font-size: 0.75rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.css-dmmspl-MuiFormGroup-root {
+  display: flex !important;
+  flex-direction: row !important;
+  padding-left: 1rem !important;
+}

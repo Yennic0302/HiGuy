@@ -1,0 +1,33 @@
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 0;
+}
+.notification ul {
+  display: flex;
+  justify-content: end;
+}
+.slide-left {
+  animation: slide-left 0.4s linear both;
+}
+
+.slide-right {
+  animation: slide-right 0.4s linear both;
+}
+@keyframes slide-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

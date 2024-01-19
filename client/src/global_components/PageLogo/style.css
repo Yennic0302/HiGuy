@@ -1,0 +1,14 @@
+.logo-container {
+  height: 3rem;
+  width: 8rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.logo-container h3 {
+  font-size: 1.8rem;
+  color: var(--primary-100);
+  font-weight: 700;
+}

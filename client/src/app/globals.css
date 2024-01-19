@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --text-primary: #fafafa;
+  --text-error: #cc4553;
+  --secondary: #c0cdd4;
+  --purple-light: #006494;
+  --bg-modal: rgba(0, 0, 0, 0.8);
+  --photopicker-overlay-background: rgba(30, 42, 49, 0.8);
+  --dropdown-background: #006494;
+  --dropdown-background-hover: #006da4;
+  --input-background: #2a3942;
+  --primary-strong: #e9edef;
+  --panel-header-background: #1f2d41; /*main */
+  --panel-header-icon: #c0cdd4;
+  --icon-lighter: #c0cdd4;
+  --icon-purple: #006494;
+  --search-input-container-background: #021020;
+  --conversation-border: #333;
+  --conversation-panel-background: #021020;
+  --background-default-hover: #202c33;
+  --incoming-background: #022b42;
+  --bubble-meta: #c0cdd4;
+  --icon-ack: #53bdeb;
+  --standard-rounded: 0.5rem;
+}
+.outgoing-background {
+  background: linear-gradient(to left, #093e6977, #086abb);
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: var(--text-error);
+  transition: all 0.3s;
+}
+
+.transition-text {
+  transition: all 0.3s;
+}
+
+.show-text {
+  animation: scale-up-top 0.4s;
+}
+@keyframes scale-up-top {
+  0% {
+    transform: scale(0.5);
+    transform-origin: center top;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: center top;
+  }
+}

@@ -1,0 +1,27 @@
+.open-menu {
+  animation: scale-up-vertical-top 0.2s linear;
+}
+@keyframes scale-up-vertical-top {
+  0% {
+    transform: scaleY(0.4);
+    transform-origin: center top;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: center top;
+  }
+}
+
+.close-menu {
+  animation: scale-down-vertical-top 0.4s;
+}
+@keyframes scale-down-vertical-top {
+  0% {
+    transform: scaleY(1);
+    transform-origin: center top;
+  }
+  100% {
+    transform-origin: center top;
+    transform: scaleY(0.4);
+  }
+}
