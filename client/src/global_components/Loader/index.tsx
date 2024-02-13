@@ -1,10 +1,17 @@
 import "./style.css";
+
 export default function Loader({
-  size,
-  color,
+  styleBall,
+  gap,
 }: {
-  size: string;
-  color: string;
+  styleBall: string;
+  gap: string;
 }) {
-  return <span className={`loader  ${size} ${color}`}></span>;
+  return (
+    <div className={`loader ${gap} `}>
+      <span className={`ball ${styleBall}`}></span>
+      <span className={`ball ${styleBall}`}></span>
+      <span className={`ball ${styleBall}`}></span>
+    </div>
+  );
 }

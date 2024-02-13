@@ -3,6 +3,8 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 import {
+  removeOnlineContact,
+  setOnlineContact,
   updateReadContactChat,
   updateReceivingDelivered,
   updateWhenReceiving,
@@ -23,6 +25,7 @@ import { Socket, io } from "socket.io-client";
 import { Chat, SearchMessage } from "./Chat";
 import { ChatList } from "./Chatlist";
 import Empty from "./Empty";
+import UserProfile from "./UserProfile";
 import Profile from "./profile";
 
 export default function Main() {
@@ -38,6 +41,9 @@ export default function Main() {
   const socket = useRef<Socket>();
   const [socketEvent, setSocketEvent] = useState<boolean>(false);
   const profile = useAppSelector((state) => state.interfaceReducer.profilePage);
+  const userProfile = useAppSelector(
+    (state) => state.interfaceReducer.userProfilePage
+  );
 
   useEffect(() => {
     if (userData) {
@@ -87,6 +93,14 @@ export default function Main() {
         dispatch(updateReceivingDelivered(data));
       });
 
+      socket.current.on("user-connected", (contactId: string) => {
+        console.log("ejecutanto");
+        dispatch(setOnlineContact(contactId));
+      });
+      socket.current.on("user-diconected", (contactId: string) => {
+        console.log("desconectando");
+        dispatch(removeOnlineContact(contactId));
+      });
       setSocketEvent(true);
     }
   }, [socket.current]);
@@ -121,10 +135,14 @@ export default function Main() {
 
   return (
     <>
-      <main className="grid grid-cols-main h-screen w-screen max-h-screen max-w-full overflow-auto">
+      <main className="grid grid-cols-1 sm:grid-cols-main h-screen w-screen max-h-screen max-w-full overflow-auto z-10">
         <ChatList />
         {currentChatData ? (
-          <div className={`${messageSearch ? "grid grid-cols-2" : ""} `}>
+          <div
+            className={`absolute z-50 sm:relative w-screen sm:w-full ${
+              messageSearch ? "grid sm:grid-cols-2" : ""
+            } `}
+          >
             <Chat />
             {messageSearch && <SearchMessage />}
           </div>
@@ -132,6 +150,7 @@ export default function Main() {
           <Empty />
         )}
         {profile.show && <Profile profileId={profile.profileId} />}
+        {userProfile && <UserProfile />}
       </main>
     </>
   );

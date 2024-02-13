@@ -10,7 +10,11 @@ import { calculateTime } from "@/utils/CalculateTime";
 import { Image, Mic } from "@mui/icons-material";
 import { MessageStatus } from "../../Chat";
 
-function ChatLIstItem({ data, isContactPage = false }: ChatListItemProperties) {
+function ChatLIstItem({
+  data,
+  isContactPage = false,
+  isOnline,
+}: ChatListItemProperties) {
   const { currentChatReducer } = useAppSelector((state) => state);
   const userData = useAppSelector((state) => state.userReducer.userData);
 
@@ -36,6 +40,7 @@ function ChatLIstItem({ data, isContactPage = false }: ChatListItemProperties) {
             about: data.about,
             birthDay: data.birthDay,
             email: data.email,
+            isOnline,
           },
         })
       );
@@ -50,13 +55,22 @@ function ChatLIstItem({ data, isContactPage = false }: ChatListItemProperties) {
   };
 
   return (
-    <div className={`flex cursor-pointer items-center `}>
+    <div
+      className={`flex cursor-pointer items-center  hover:bg-[var(--background-default-hover)] transition-all`}
+    >
       <div onClick={handleProfile} className=" min-w-fit px-5 py-2 ">
-        <Avatar type="lg" image={data.profilePicture} />
+        <div className="relative">
+          <div
+            className={` h-4 w-4 absolute right-0 bottom-0 rounded-full z-50 ${
+              isOnline ? "block bg-green-500" : "hidden"
+            }`}
+          ></div>
+          <Avatar type="lg" image={data.profilePicture} />
+        </div>
       </div>
       <div
         onClick={handleCurrentChat}
-        className="min-h-full flex flex-col justify-center px-2 pt-3 pr-2 w-full cursor-pointer hover:bg-[var(--background-default-hover)]"
+        className="min-h-full flex flex-col justify-center px-2 pt-3 pr-2 w-full cursor-pointer "
       >
         <div className="flex justify-between">
           <div>

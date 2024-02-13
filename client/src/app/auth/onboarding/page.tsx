@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 // eslint-disable-next-line import/extensions
-import { InputForm, Loader } from "@/global_components";
+import { HiGuyLogo, InputForm, Loader } from "@/global_components";
 import { setPropertyUserData, setUserData } from "@/redux/features/userSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import checkUser from "@/services/checkUser.service";
@@ -94,7 +94,6 @@ const Onboarding = () => {
     };
 
     const response = await setOnboardRequest(dataToSend, userData?.id);
-    setLoading(false);
 
     if (usernameError) return;
 
@@ -108,37 +107,35 @@ const Onboarding = () => {
         userData: response.data.userData,
       })
     );
-    return router.push("/");
+    router.push("/");
+    return;
   };
 
   return (
     <>
       {userData ? (
-        <section className="relative w-screen h-screen bg-[var(--search-input-container-background)] overflow-auto py-4 overflow-x-hidden text-[var(--text-primary)]">
-          <div className="container flex flex-col items-center justify-center m-auto h-full">
-            <div className="bg-panel-header-background h-screen w-screen text-white flex flex-col items-center gap-6 justify-center  ">
-              <div>
-                <div className="flex items-center justify-center gap-2">
-                  <samp className="text-7xl text-[var(--dropdown-background)]">
+        <section className="flex items-center relative w-screen h-screen bg-[var(--search-input-container-background)] overflow-auto py-4 text-[var(--text-primary)]">
+          <div className="container flex flex-col items-center justify-center m-auto  ">
+            <div className="bg-panel-header-background w-full text-white flex flex-col items-center gap-6 justify-center  ">
+              <div className="flex flex-col items-center gap-y-4">
+                <div className="flex gap-2 items-center justify-center mb-5">
+                  <HiGuyLogo style="w-16 lg:w-24" />
+                  <h1 className="  text-center text-4xl lg:text-6xl font-bold">
                     HiGuy
-                  </samp>
+                  </h1>
                 </div>
-                <h2 className="text-2xl">
-                  Create your profile
+                <h2 className=" text-lg sm:text-2xl">
+                  Create your profile{" "}
                   <span className="text-[var(--dropdown-background)]">
                     {userData.name}
                   </span>
                 </h2>
               </div>
-
               <div className="flex  gap-6  w-full justify-center flex-wrap">
                 <div>
-                  <Avatar
-                    type="xl"
-                    image={userData.profilePicture || "/default_avatar.png"}
-                  />
+                  <Avatar type="xl" image={userData.profilePicture} />
                 </div>
-                <div className="flex flex-col items-center w-full max-w-[20rem] justify-center mt-5 gap-6">
+                <div className="flex flex-col items-center w-full max-w-[20rem] px-4 justify-center mt-5 gap-6">
                   <form
                     onSubmit={handleSubmit}
                     className="flex flex-col gap-6 w-full"
@@ -179,32 +176,7 @@ const Onboarding = () => {
                     <div>
                       <BirthDayPicker />
                     </div>
-                    <div>
-                      <FormLabel id="gender">Gender</FormLabel>
-                      <RadioGroup
-                        defaultValue="female"
-                        name="gender"
-                        onChange={(e) =>
-                          dispatch(
-                            setPropertyUserData({
-                              name: e.target.name,
-                              value: e.target.value,
-                            })
-                          )
-                        }
-                      >
-                        <FormControlLabel
-                          value="female"
-                          control={<BpRadio />}
-                          label="Female"
-                        />
-                        <FormControlLabel
-                          value="male"
-                          control={<BpRadio />}
-                          label="Male"
-                        />
-                      </RadioGroup>
-                    </div>
+
                     <div>
                       <FormLabel id="privacy">Profile privacy</FormLabel>
                       <RadioGroup
@@ -267,7 +239,7 @@ const Onboarding = () => {
                           "opacity-80 cursor-not-allowed hover:bg-[var(--dropdown-background)]"
                         }`}
                       >
-                        <Loader size="small" color="white" />
+                        <Loader styleBall="h-2 w-2" gap="gap-2" />
                       </button>
                     )}
                   </form>

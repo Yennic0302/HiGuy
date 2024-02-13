@@ -15,8 +15,7 @@ export default function ChatContainer() {
   return (
     <>
       {currentChatData ? (
-        <div className="h-[80vh]  w-full flex-grow overflow-auto custom-scrollbar">
-          <div className="bg-fixed h-full w-full opacity-5 fixed left-0 top-0 z-0"></div>
+        <div className="h-[80vh] backdrop-blur-md bg-[--conversation-panel-background]  w-full flex-grow overflow-auto custom-scrollbar">
           <div className="mx-10 my-6 relative bottom-0 z-40 left-0">
             <div className=" flex w-full">
               <div className="flex flex-col justify-end w-full gap-2 overflow-auto">

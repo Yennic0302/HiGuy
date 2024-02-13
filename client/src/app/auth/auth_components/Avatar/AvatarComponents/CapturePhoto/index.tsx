@@ -72,16 +72,16 @@ function CapturePhoto({
     <div className="absolute h-screen w-screen top-0 left-0 bg-[var(--search-input-container-background)] z-50 rounded-lg  flex items-center justify-center">
       <div className="relative flex flex-col gap-4 w-full max-w-[40rem] items-center justify-center">
         <div
-          className="absolute  top-0 right-0   cursor-pointer flex items-center justify-center "
+          className="absolute  top-0 right-0   cursor-pointer flex items-center justify-center p-4"
           onClick={() => setShowCapturePhoto(false)}
         >
-          <Close className="h-10 w-10 z-50 cursor-pointer" />
+          <Close className="h-10 w-10 z-50 cursor-pointer " />
         </div>
         {photoPreView !== undefined ? (
-          <div className="flex justify-center relative w-full h-full">
+          <div className="flex justify-center relative h-screen w-screen sm:h-full sm:w-full">
             <img
               src={photoPreView}
-              className=" w-full h-full"
+              className="w-full h-full object-cover "
               alt="photo preview"
             />
             <div className="absolute w-full flex justify-evenly bottom-4 ">
@@ -94,11 +94,14 @@ function CapturePhoto({
             </div>
           </div>
         ) : (
-          <div className="flex justify-center" hidden={!Boolean(photoPreView)}>
+          <div
+            className="flex justify-center h-screen w-screen sm:h-full sm:w-full"
+            hidden={!Boolean(photoPreView)}
+          >
             <video
               id="video"
               autoPlay
-              className="w-full h-full"
+              className="w-full h-full object-cover"
               ref={videoRef}
             ></video>
           </div>

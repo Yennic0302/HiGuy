@@ -49,6 +49,7 @@ interface InitialStateUser {
 
 interface InitialStateInterface {
   contactsPage: boolean;
+  userProfilePage: boolean;
   profilePage: {
     show: boolean;
     profileId: string;

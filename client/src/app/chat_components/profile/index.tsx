@@ -12,10 +12,9 @@ import {
   removeContact,
 } from "@/services/contacts.service";
 import { getProfile } from "@/services/profile.service";
-import { Call, Chat, Close } from "@mui/icons-material";
+import { Chat, Close } from "@mui/icons-material";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AiFillVideoCamera } from "react-icons/ai";
 import { BsFillPersonDashFill, BsPersonPlusFill } from "react-icons/bs";
 
 export default function Profile({ profileId }: { profileId: string }) {
@@ -129,18 +128,6 @@ export default function Profile({ profileId }: { profileId: string }) {
                       })
                     );
                   }}
-                />
-                <div className="h-[20px] w-[1px] bg-[--secondary]"></div>
-
-                <Call
-                  className="text-[var(--panel-header-icon)] cursor-pointer text-2xl"
-                  titleAccess="Start call"
-                />
-                <div className="h-[20px] w-[1px] bg-[--secondary]"></div>
-
-                <AiFillVideoCamera
-                  className="text-[var(--panel-header-icon)] cursor-pointer text-2xl"
-                  titleaccess="Start video call"
                 />
               </nav>
               {profileData.about.trim().length > 0 && (

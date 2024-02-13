@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 "use client";
-import { InputForm, Loader } from "@/global_components";
+import { HiGuyLogo, InputForm, Loader } from "@/global_components";
 import { setUserData } from "@/redux/features/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { firebaseAuth } from "@/utils/FirebaseConfig";
@@ -139,8 +139,8 @@ const SingUp = () => {
     }
     if (response) {
       if (!response.data.ok) {
-        setLoading(false);
         setErrors(formattedErrors(response.data.errors));
+        setLoading(false);
         return;
       }
 
@@ -151,8 +151,8 @@ const SingUp = () => {
             userData: response.data.userData,
           })
         );
-        setLoading(false);
         router.push("./onboarding");
+        return;
       }
     }
   };
@@ -177,12 +177,11 @@ const SingUp = () => {
       const response = await signUpGoogleRequest(dataToSend);
       if (response) {
         if (!response.data.ok) {
-          setGoogleLoading(false);
           setErrorGoogle(response.data.statusText);
+          setGoogleLoading(false);
           return;
         }
         if (response.data.ok) {
-          setGoogleLoading(false);
           dispatch(
             setUserData({
               isLoggedIn: true,
@@ -190,6 +189,7 @@ const SingUp = () => {
             })
           );
           router.push("./onboarding");
+          setGoogleLoading(false);
           return;
         }
       }
@@ -210,10 +210,15 @@ const SingUp = () => {
   };
 
   return (
-    <section className="relative w-screen h-screen bg-[var(--search-input-container-background)]  text-[var(--text-primary)]">
+    <section className="flex items-center relative w-screen h-screen bg-[var(--search-input-container-background)]  text-[var(--text-primary)]">
       <div className="container flex flex-col items-center justify-center m-auto h-full">
         <article className="flex flex-col p-8 gap-6">
-          <h1 className="w-full mb-5 text-center text-4xl ">HiHuy</h1>
+          <div className="flex gap-2 items-center justify-center mb-5">
+            <HiGuyLogo style="w-16 lg:w-24" />
+            <h1 className="  text-center text-4xl lg:text-6xl font-bold">
+              HiGuy
+            </h1>
+          </div>
           <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-4 max-w-md"
@@ -311,7 +316,7 @@ const SingUp = () => {
                       : "hover:bg-[var(--dropdown-background-hover)] transition-all cursor-pointer"
                   }`}
                 >
-                  Sing Up
+                  Sign Up
                 </button>
               ) : (
                 <button
@@ -321,7 +326,7 @@ const SingUp = () => {
                     "opacity-80 cursor-not-allowed hover:bg-[var(--dropdown-background)]"
                   }`}
                 >
-                  <Loader size="small" color="white" />
+                  <Loader styleBall="h-2 w-2" gap="gap-2" />
                 </button>
               )}
             </div>

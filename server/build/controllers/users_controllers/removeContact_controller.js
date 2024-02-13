@@ -18,16 +18,16 @@ const addContact = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     try {
         const id = req.params.id;
         const { contactId } = req.body;
-        const contact = yield prisma.contact.findUnique({
+        const contact = yield prisma.contact.findMany({
             where: { fromId: id, contactId },
         });
-        if (contact) {
-            const isFriend = yield prisma.contact.findUnique({
+        if (contact[0] !== undefined) {
+            const isFriend = yield prisma.contact.findMany({
                 where: { fromId: contactId, contactId: id },
             });
-            if (isFriend) {
+            if (isFriend[0] !== undefined) {
                 yield prisma.contact.update({
-                    where: { id: isFriend.id },
+                    where: { id: isFriend[0].id },
                     data: {
                         friends: false,
                     },
@@ -35,8 +35,7 @@ const addContact = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             }
             yield prisma.contact.delete({
                 where: {
-                    fromId: id,
-                    contactId,
+                    id: contact[0].id,
                 },
             });
             res.status(202).json({ ok: true });

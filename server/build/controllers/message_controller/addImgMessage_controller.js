@@ -32,6 +32,7 @@ const addImgMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, func
                         reciever: { connect: { id: to.toString() } },
                         messageStatus: getUser ? "delivered" : "sent",
                     },
+                    include: { sender: true, reciever: true },
                 });
                 return res.status(201).json({ message });
             }

@@ -6,6 +6,7 @@ function ContextMenu({
   options,
   coordinates,
   setContextMenu,
+  setHover,
 }: ContextMenuProperties) {
   const contextMenuRef = useRef<HTMLDivElement | null>(null);
 
@@ -17,6 +18,7 @@ function ContextMenu({
           !contextMenuRef.current.contains(e.target)
         ) {
           contextMenuRef.current.classList.add("close-menu");
+          setHover(false);
           setTimeout(() => {
             setContextMenu(false);
           }, 200);

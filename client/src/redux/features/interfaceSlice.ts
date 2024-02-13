@@ -5,6 +5,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: InitialStateInterface = {
   contactsPage: false,
+  userProfilePage: false,
   profilePage: {
     show: false,
     profileId: "",
@@ -15,6 +16,9 @@ export const userSlice = createSlice({
   name: "interface",
   initialState,
   reducers: {
+    setUserProfile: (state) => {
+      state.userProfilePage = !state.userProfilePage;
+    },
     setContactsPage: (state) => {
       state.contactsPage = !state.contactsPage;
     },
@@ -27,5 +31,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setContactsPage, setProfile, setSearchPage } = userSlice.actions;
+export const { setContactsPage, setProfile, setSearchPage, setUserProfile } =
+  userSlice.actions;
 export default userSlice.reducer;

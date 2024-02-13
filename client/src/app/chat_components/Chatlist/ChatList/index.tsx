@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 import { useAppSelector } from "@/redux/hooks";
-import { ChatListHeader, Contacts, List, SearchBar } from "..";
+import { ChatListHeader, Contacts, List } from "..";
 import SearchUser from "../SearchUser";
 
 function ChatList() {
@@ -23,7 +23,9 @@ function ChatList() {
       {!contactsPage && !searchPage && (
         <>
           <ChatListHeader />
-          <SearchBar />
+          <h2 className="text-2xl w-full text-[--text-primary] pl-6 bg-[--search-input-container-background]">
+            Chats
+          </h2>
           <List />
         </>
       )}

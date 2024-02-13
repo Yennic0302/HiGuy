@@ -30,6 +30,7 @@ const addAudioMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
                         reciever: { connect: { id: to.toString() } },
                         type: "audio",
                     },
+                    include: { sender: true, reciever: true },
                 });
                 return res.status(201).json({ message });
             }

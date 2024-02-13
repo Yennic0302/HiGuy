@@ -26,8 +26,8 @@ function PhotoLibrary({
   ];
 
   return (
-    <div className="fixed blur-in-expand top-0 z-50 left-0 max-h-[100vh] max-w-[100vw] h-full w-full flex justify-center items-center">
-      <div className="h-max w-max bg-[var(--input-background)] rounded-lg p-4">
+    <div className="fixed blur-in-expand top-0 z-50 left-0 h-[100vh] w-[100vw] flex justify-center items-center">
+      <div className="sm:h-max sm:w-max h-screen w-screen bg-[var(--input-background)] md:rounded-lg p-4 overflow-auto">
         <div className="flex justify-between items-center">
           <h1 className="">Choose your picture</h1>
           <div
@@ -37,7 +37,7 @@ function PhotoLibrary({
             <Close className=" cursor-pointer" />
           </div>
         </div>
-        <div className="grid grid-cols-3 justify-center items-center gap-16 p-4">
+        <div className=" flex flex-wrap  sm:grid sm:grid-cols-3  justify-center items-center gap-16 p-4">
           {images.map((image, index) => (
             <div
               key={index}

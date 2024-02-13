@@ -9,5 +9,3 @@ export { default as MessageBar } from "./MessageBar";
 export { default as MessageStatus } from "./MessageStatus";
 export { default as ModalDiscardImage } from "./ModalDiscardImage";
 export { default as SearchMessage } from "./SearchMessage";
-export { default as VideoCall } from "./VideoCall";
-export { default as VoiceCall } from "./VoiceCall";

@@ -30,7 +30,7 @@ export default function SearchMessage() {
   }, [search, messages]);
 
   return (
-    <div className="border-[--border-conversation] border-1 w-full bg-[--conversation-panel-background] flex flex-col z-10 max-h-screen">
+    <div className="absolute sm:relative border-[--border-conversation] border-1 w-full bg-[--conversation-panel-background] flex flex-col z-50 h-screen sm:max-h-screen">
       <div className="h-16 px-4 py-5 flex gap-10 items-center bg-[--panel-header-background] text-[--text-primary]">
         <Close
           className="cursor-pointer text-[--text-primary] text-2xl"
@@ -68,7 +68,7 @@ export default function SearchMessage() {
             </span>
           )}
           {
-            <div className="flex flex-col w-full h-full">
+            <div className="flex flex-col w-full ">
               {searchedMessages.map((message) => (
                 <div
                   key={message.id}

@@ -22,6 +22,7 @@ const addAudioMessage = async (
             reciever: { connect: { id: to.toString() } },
             type: "audio",
           },
+          include: { sender: true, reciever: true },
         });
 
         return res.status(201).json({ message });

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ChangeEvent } from "react";
 import ReactDOM from "react-dom";
 
@@ -17,7 +18,7 @@ function PhotoPicker({
   );
   return ReactDOM.createPortal(
     component,
-    document.getElementById("photo-picker-element")
+    document.getElementById("photo-picker-element") as HTMLElement
   );
 }
 

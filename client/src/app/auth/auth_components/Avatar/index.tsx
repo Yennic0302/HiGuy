@@ -101,13 +101,23 @@ function Avatar({ type, image }: AvatarProperties) {
     <>
       <div className="flex items-center justify-center ">
         {type === "sm" && (
-          <div className="relative h-10 w-10">
-            <Image src={image} alt="avatar" className="rounded-full" fill />
+          <div className="relative overflow-hidden rounded-full h-10 w-10">
+            <Image
+              src={image}
+              alt="avatar"
+              className="w-full h-full object-cover "
+              fill
+            />
           </div>
         )}
         {type === "lg" && (
-          <div className="relative h-14 w-14">
-            <Image src={image} alt="avatar" className="rounded-full" fill />
+          <div className="relative overflow-hidden rounded-full h-14 w-14">
+            <Image
+              src={image}
+              alt="avatar"
+              className="rounded-full object-cover "
+              fill
+            />
           </div>
         )}
         {type === "xl" && (
@@ -115,9 +125,10 @@ function Avatar({ type, image }: AvatarProperties) {
             className="relative cursor-pointer z-0"
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
+            onTouchStart={() => setHover(true)}
           >
             <div
-              className={`bg-[var(--photopicker-overlay-background)] h-60 w-60 absolute top-0 left-0 flex items-center justify-center rounded-full flex-col text-center gap-2 z-20
+              className={`bg-[var(--photopicker-overlay-background)] h-full w-full absolute top-0 left-0 flex items-center justify-center rounded-full flex-col text-center gap-2 z-20
               ${hover ? "visible" : "hidden"}`}
               onClick={(e) => showContextMenu(e)}
               id="context-opener"
@@ -135,11 +146,11 @@ function Avatar({ type, image }: AvatarProperties) {
                 Change profile photo
               </span>
             </div>
-            <div className="flex items-center justify-center h-60 w-60 ">
+            <div className="relative rounded-full  flex items-center justify-center h-40 w-40 sm:h-60 sm:w-60 overflow-hidden">
               <Image
                 src={image}
                 alt="avatar"
-                className="rounded-full w-full h-full object-cover "
+                className="w-full h-full object-cover "
                 fill
               />
             </div>
@@ -148,6 +159,7 @@ function Avatar({ type, image }: AvatarProperties) {
       </div>
       {isContextMenuVisible && (
         <ContextMenu
+          setHover={setHover}
           options={contextMenuOptions}
           coordinates={contextMenuCoordinates}
           setContextMenu={setIsContextMenuVisible}

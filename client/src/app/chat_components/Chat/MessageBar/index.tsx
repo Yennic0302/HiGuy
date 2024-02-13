@@ -51,8 +51,10 @@ export default function MessageBar() {
       );
 
       if (response?.status === 201) {
+        console.log(response.data);
         dispatch(updateContactChat(response.data.message));
         dispatch(addMessage(response?.data.message));
+
         setGrabPhoto(false);
         setImage(null);
         setPrevImage(null);
@@ -248,7 +250,9 @@ export default function MessageBar() {
                 <input
                   type="text"
                   name="message"
-                  onChange={(e) => setMessage(e.currentTarget.value)}
+                  onChange={(e) => {
+                    setMessage(e.currentTarget.value);
+                  }}
                   value={message}
                   autoComplete="false"
                   placeholder="Type a message"

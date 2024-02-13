@@ -18,9 +18,8 @@ model User {
   username String? @unique
   lastName String
   name String 
-  gender String? @default("female")
   password String
-  profilePicture String? @default("")
+  profilePicture String? @default("/default_avatar.png")
   about String? @default("")
   birthDay DateTime? @default(now())
   createAt DateTime @default(now())
@@ -35,7 +34,7 @@ model Contact{
   id Int @id @default(autoincrement())
   fromId String
   contact User @relation("contacts", fields: [contactId], references: [id])
-  contactId String @unique
+  contactId String 
   friends Boolean @default(false)
 } 
 

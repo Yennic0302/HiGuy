@@ -18,16 +18,16 @@ const addContact = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     try {
         const id = req.params.id;
         const { contactId } = req.body;
-        const contact = yield prisma.contact.findUnique({
+        const contact = yield prisma.contact.findMany({
             where: { fromId: id, contactId },
         });
-        if (contact == null) {
-            const isFriend = yield prisma.contact.findUnique({
+        if (contact[0] == undefined) {
+            const isFriend = yield prisma.contact.findMany({
                 where: { fromId: contactId, contactId: id },
             });
-            if (isFriend) {
+            if (isFriend[0] !== undefined) {
                 yield prisma.contact.update({
-                    where: { id: isFriend.id },
+                    where: { id: isFriend[0].id },
                     data: {
                         friends: true,
                     },
@@ -36,8 +36,8 @@ const addContact = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
             const newContact = yield prisma.contact.create({
                 data: {
                     fromId: id,
-                    contactId,
-                    friends: isFriend ? true : false,
+                    contactId: contactId,
+                    friends: isFriend[0] !== undefined ? true : false,
                 },
                 include: {
                     contact: {

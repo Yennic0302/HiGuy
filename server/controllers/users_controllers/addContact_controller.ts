@@ -7,18 +7,18 @@ const addContact = async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const { contactId } = req.body;
 
-    const contact = await prisma.contact.findUnique({
+    const contact = await prisma.contact.findMany({
       where: { fromId: id, contactId },
     });
 
-    if (contact == null) {
-      const isFriend = await prisma.contact.findUnique({
+    if (contact[0] == undefined) {
+      const isFriend = await prisma.contact.findMany({
         where: { fromId: contactId, contactId: id },
       });
 
-      if (isFriend) {
+      if (isFriend[0] !== undefined) {
         await prisma.contact.update({
-          where: { id: isFriend.id },
+          where: { id: isFriend[0].id },
           data: {
             friends: true,
           },
@@ -28,8 +28,8 @@ const addContact = async (req: Request, res: Response, next: NextFunction) => {
       const newContact = await prisma.contact.create({
         data: {
           fromId: id,
-          contactId,
-          friends: isFriend ? true : false,
+          contactId: contactId,
+          friends: isFriend[0] !== undefined ? true : false,
         },
         include: {
           contact: {

@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable import/extensions */
 "use client";
-import { InputForm, Loader } from "@/global_components";
+import { HiGuyLogo, InputForm, Loader } from "@/global_components";
 import NotificationError from "@/global_components/NotificationError";
 import { setUserData } from "@/redux/features/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
@@ -81,17 +81,17 @@ const SignIn = () => {
     }
     if (response) {
       if (!response.data.ok) {
-        setLoading(false);
-        console.log(response.data);
         response.data.errors.forEach((error: ErrorApi) => {
           if (error.instancePath == "/google") {
-            return setErrorGoogle(error.message);
+            setErrorGoogle(error.message);
+            setLoading(false);
+            return;
           }
         });
-        return setErrors(formattedErrors(response.data.errors));
+        setErrors(formattedErrors(response.data.errors));
+        return;
       }
       if (response.data.ok) {
-        setLoading(false);
         dispatch(
           setUserData({
             isLoggedIn: true,
@@ -99,9 +99,10 @@ const SignIn = () => {
           })
         );
 
-        if (response.data.userData.isNewUser)
-          return router.push("./onboarding");
-        else return router.push("/");
+        if (response.data.userData.isNewUser) router.push("./onboarding");
+        else router.push("/");
+        setLoading(false);
+        return;
       }
     }
   };
@@ -120,13 +121,13 @@ const SignIn = () => {
 
       if (response) {
         if (!response.data.ok) {
-          setGoogleLoading(false);
           setErrorGoogle(response.data.statusText);
+          setGoogleLoading(false);
+
           return;
         }
 
         if (response.data.ok) {
-          setGoogleLoading(false);
           dispatch(
             setUserData({
               isLoggedIn: true,
@@ -134,9 +135,13 @@ const SignIn = () => {
             })
           );
 
-          if (response.data.userData.isNewUser)
-            return router.push("./onboarding");
-          else return router.push("/");
+          if (response.data.userData.isNewUser) {
+            router.push("./onboarding");
+          } else {
+            router.push("/");
+          }
+          setGoogleLoading(false);
+          return;
         }
       }
     } catch (err) {
@@ -157,12 +162,15 @@ const SignIn = () => {
   };
 
   return (
-    <section className="relative w-screen h-screen bg-[var(--search-input-container-background)]  text-[var(--text-primary)]">
+    <section className="flex items-center relative w-screen h-screen bg-[var(--search-input-container-background)]  text-[var(--text-primary)]">
       <div className="container flex flex-col items-center justify-center m-auto h-full">
         <article className="flex flex-col p-8 gap-4 w-full max-w-[25rem]">
-          <h1 className="w-full mb-5 text-center text-4xl text-[var(--primary-100)]">
-            HiGuy
-          </h1>
+          <div className="flex gap-2 items-center justify-center mb-5">
+            <HiGuyLogo style="w-16 lg:w-24" />
+            <h1 className="  text-center text-4xl lg:text-6xl font-bold">
+              HiGuy
+            </h1>
+          </div>
           <form
             onSubmit={handleSubmit}
             onChange={verifyDataIsFull}
@@ -228,7 +236,7 @@ const SignIn = () => {
                   "opacity-80 cursor-not-allowed hover:bg-[var(--dropdown-background)]"
                 }`}
               >
-                <Loader size="small" color="white" />
+                <Loader styleBall="h-2 w-2" gap="gap-2" />
               </button>
             )}
           </form>
@@ -244,11 +252,11 @@ const SignIn = () => {
             <span>{<Google fontSize="inherit" />}</span>
             <p className="text-lg">Sign in with Google</p>
           </button>
-          <div className="flex justify-center gap-2 rounded-[var(--standard-rounded)] p-4 bg-[var(--panel-header-background)] w-full">
-            <p>Do not you have an account?</p>
+          <div className="flex flex-wrap gap-2 rounded-[var(--standard-rounded)] p-4 bg-[var(--panel-header-background)] w-full">
+            <p className="">Do not you have an account?</p>
             <Link
               href="./sign-up"
-              className="text-[var(--dropdown-background-hover)]"
+              className="text-[var(--dropdown-background-hover)] self-start "
             >
               Sign Up
             </Link>

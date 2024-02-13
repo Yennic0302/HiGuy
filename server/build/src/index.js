@@ -43,6 +43,27 @@ io.on("connection", (socket) => {
     global.socketGlobal = socket;
     socket.on("add-user", (userId) => {
         onlineUsers.set(userId, socket.id);
+        const getContactsOfUser = () => __awaiter(void 0, void 0, void 0, function* () {
+            const prisma = (0, prismaClient_1.default)();
+            const contacts = yield prisma.contact.findMany({
+                where: { fromId: userId },
+            });
+            const contactsOnline = contacts.map((contact) => {
+                if (onlineUsers.has(contact.contactId) && contact.friends) {
+                    return contact.contactId;
+                }
+                else {
+                    return null;
+                }
+            });
+            contactsOnline.forEach((contactId) => {
+                if (contactId != null) {
+                    const userSocket = onlineUsers.get(contactId);
+                    socket.to(userSocket).emit("user-connected", userId);
+                }
+            });
+        });
+        getContactsOfUser();
     });
     socket.on("send-message", (data) => {
         const sendUserSocket = onlineUsers.get(data.to);
@@ -70,55 +91,35 @@ io.on("connection", (socket) => {
             socket.to(senderUserSocket).emit("update-read-from-sender", message);
         }
     });
-    socket.on("outgoing-voice-call", (data) => {
-        const sendUserSocket = onlineUsers.get(data.to);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("incoming-voice-call", {
-                from: data.from,
-                roomId: data.roomId,
-                callType: data.callType,
-            });
-        }
-    });
-    socket.on("outgoing-video-call", (data) => {
-        const sendUserSocket = onlineUsers.get(data.to);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("incoming-video-call", {
-                from: data.from,
-                roomId: data.roomId,
-                callType: data.callType,
-            });
-        }
-    });
-    socket.on("reject-voice-call", (data) => {
-        const sendUserSocket = onlineUsers.get(data.from);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("voice-call-rejected");
-        }
-    });
-    socket.on("reject-video-call", (data) => {
-        const sendUserSocket = onlineUsers.get(data.from);
-        if (sendUserSocket) {
-            socket.to(sendUserSocket).emit("video-call-rejected");
-        }
-    });
-    socket.on("accept-incoming-call", ({ signal, id }) => {
-        const sendUserSocket = onlineUsers.get(id);
-        console.log("aceptando");
-        socket.to(sendUserSocket).emit("accept-call", signal);
-    });
-    socket.on("send-peer-signal", ({ id, signalData }) => {
-        const sendUserSocket = onlineUsers.get(id);
-        socket.to(sendUserSocket).emit("receivingSignal", signalData);
-    });
     socket.on("disconnect", () => {
-        let userId;
+        let userId = "";
         for (let [clave, valor] of onlineUsers) {
             if (valor === socket.id) {
                 userId = clave;
                 break;
             }
         }
+        const getContactsOfUser = () => __awaiter(void 0, void 0, void 0, function* () {
+            const prisma = (0, prismaClient_1.default)();
+            const contacts = yield prisma.contact.findMany({
+                where: { fromId: userId },
+            });
+            const contactsOnline = contacts.map((contact) => {
+                if (onlineUsers.has(contact.contactId) && contact.friends) {
+                    return contact.contactId;
+                }
+                else {
+                    return null;
+                }
+            });
+            contactsOnline.forEach((contactId) => {
+                if (contactId != null) {
+                    const userSocket = onlineUsers.get(contactId);
+                    socket.to(userSocket).emit("user-diconected", userId);
+                }
+            });
+        });
+        getContactsOfUser();
         onlineUsers.delete(userId);
     });
 });

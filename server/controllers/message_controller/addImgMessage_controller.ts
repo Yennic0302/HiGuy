@@ -23,6 +23,7 @@ const addImgMessage = async (
             reciever: { connect: { id: to.toString() } },
             messageStatus: getUser ? "delivered" : "sent",
           },
+          include: { sender: true, reciever: true },
         });
 
         return res.status(201).json({ message });

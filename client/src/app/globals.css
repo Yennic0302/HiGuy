@@ -6,17 +6,17 @@
   --text-primary: #fafafa;
   --text-error: #cc4553;
   --secondary: #c0cdd4;
-  --purple-light: #006494;
+  --purple-light: #006da4;
   --bg-modal: rgba(0, 0, 0, 0.8);
   --photopicker-overlay-background: rgba(30, 42, 49, 0.8);
-  --dropdown-background: #006494;
-  --dropdown-background-hover: #006da4;
-  --input-background: #2a3942;
+  --dropdown-background: #006da4;
+  --dropdown-background-hover: #006495;
+  --input-background: #001420;
   --primary-strong: #e9edef;
-  --panel-header-background: #1f2d41; /*main */
+  --panel-header-background: #003553; /*main */
   --panel-header-icon: #c0cdd4;
   --icon-lighter: #c0cdd4;
-  --icon-purple: #006494;
+  --icon-purple: #006da4;
   --search-input-container-background: #021020;
   --conversation-border: #333;
   --conversation-panel-background: #021020;
@@ -39,6 +39,10 @@ html,
 a {
   color: inherit;
   text-decoration: none;
+}
+
+body {
+  overflow: hidden;
 }
 
 .error {

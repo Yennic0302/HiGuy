@@ -77,7 +77,6 @@ const getInitialContactWithMessages = (req, res, next) => __awaiter(void 0, void
                 }
             });
             if (messageStatusChange.length > 0) {
-                console.log("ejecutando");
                 yield prisma.messages.updateMany({
                     where: {
                         id: { in: messageStatusChange },
@@ -98,10 +97,23 @@ const getInitialContactWithMessages = (req, res, next) => __awaiter(void 0, void
                     }
                 });
             }
+            const friendsOnline = yield prisma.contact.findMany({
+                where: {
+                    fromId: userId,
+                    friends: true,
+                    contactId: {
+                        in: Array.from(onlineUsers.keys()),
+                    },
+                },
+                select: {
+                    contactId: true,
+                },
+            });
+            const friendsOnlineArray = friendsOnline.map((friend) => friend.contactId);
             return res.status(200).json({
                 ok: true,
                 users: Array.from(users.values()),
-                onlineUsers: Array.from(onlineUsers.keys()),
+                onlineUsers: friendsOnlineArray,
             });
         }
     }

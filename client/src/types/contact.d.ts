@@ -16,7 +16,6 @@ interface ContactInfo {
   birthDay: string;
   email: string;
   createAt?: Date;
-  gender?: string;
   id?: string;
   isNewUser?: boolean;
   isProfilePrivate?: string;
@@ -29,4 +28,5 @@ interface ContactInfo {
   type?: string;
   typeSingUp?: string;
   updatedAt?: Date;
+  isOnline: boolean;
 }

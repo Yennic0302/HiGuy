@@ -46,6 +46,26 @@ io.on("connection", (socket) => {
 
   socket.on("add-user", (userId) => {
     onlineUsers.set(userId, socket.id);
+    const getContactsOfUser = async () => {
+      const prisma = getPrismaInstance();
+      const contacts = await prisma.contact.findMany({
+        where: { fromId: userId },
+      });
+      const contactsOnline = contacts.map((contact) => {
+        if (onlineUsers.has(contact.contactId) && contact.friends) {
+          return contact.contactId;
+        } else {
+          return null;
+        }
+      });
+      contactsOnline.forEach((contactId) => {
+        if (contactId != null) {
+          const userSocket = onlineUsers.get(contactId);
+          socket.to(userSocket).emit("user-connected", userId);
+        }
+      });
+    };
+    getContactsOfUser();
   });
 
   socket.on("send-message", (data) => {
@@ -78,13 +98,35 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    let userId;
+    let userId: string = "";
+
     for (let [clave, valor] of onlineUsers) {
       if (valor === socket.id) {
         userId = clave;
         break;
       }
     }
+
+    const getContactsOfUser = async () => {
+      const prisma = getPrismaInstance();
+      const contacts = await prisma.contact.findMany({
+        where: { fromId: userId },
+      });
+      const contactsOnline = contacts.map((contact) => {
+        if (onlineUsers.has(contact.contactId) && contact.friends) {
+          return contact.contactId;
+        } else {
+          return null;
+        }
+      });
+      contactsOnline.forEach((contactId) => {
+        if (contactId != null) {
+          const userSocket = onlineUsers.get(contactId);
+          socket.to(userSocket).emit("user-diconected", userId);
+        }
+      });
+    };
+    getContactsOfUser();
     onlineUsers.delete(userId);
   });
 });

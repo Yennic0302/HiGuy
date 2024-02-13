@@ -28,4 +28,5 @@ interface ContextMenuProperties {
   options: ContextMenuOptions[];
   coordinates: ContextMenuCoordinates;
   setContextMenu: (value: boolean) => void;
+  setHover: (value: boolean) => void;
 }
