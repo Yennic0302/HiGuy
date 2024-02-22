@@ -26,6 +26,7 @@ import "./style.css";
 const Onboarding = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [usernameError, setUsernameError] = useState<string>("");
+  const [descriptionError, setDescriptionError] = useState<string>("");
   const [showUsernameDetails, setUsernameDetails] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -95,7 +96,10 @@ const Onboarding = () => {
 
     const response = await setOnboardRequest(dataToSend, userData?.id);
 
-    if (usernameError) return;
+    if (usernameError || descriptionError != "") {
+      console.log("ejecutanti");
+      return;
+    }
 
     if (!response?.data.ok) {
       return setUsernameError(response?.data.statusText);
@@ -158,7 +162,7 @@ const Onboarding = () => {
                         className="w-full pb-0"
                         autoComplete="none"
                       />
-                      <div className="h-6">
+                      <div className="h-6 w-full">
                         {usernameError ? (
                           <span className="show-text error h-full  px-[1rem]">
                             {usernameError}
@@ -210,15 +214,29 @@ const Onboarding = () => {
                         size="small"
                         className="w-full"
                         autoComplete="none"
-                        onChange={(e) =>
-                          dispatch(
-                            setPropertyUserData({
-                              name: e.target.name,
-                              value: e.target.value,
-                            })
-                          )
-                        }
+                        onChange={(e) => {
+                          if (e.target.value.length <= 140) {
+                            dispatch(
+                              setPropertyUserData({
+                                name: e.target.name,
+                                value: e.target.value,
+                              })
+                            );
+                            setDescriptionError("");
+                          } else {
+                            setDescriptionError(
+                              "About must be less than  140 characters"
+                            );
+                          }
+                        }}
                       />
+                    </div>
+                    <div className="h-4">
+                      {descriptionError && (
+                        <span className="error h-full transition-text show-text ">
+                          {descriptionError}
+                        </span>
+                      )}
                     </div>
                     {!loading ? (
                       <button

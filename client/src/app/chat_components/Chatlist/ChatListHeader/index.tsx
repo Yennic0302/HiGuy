@@ -6,8 +6,7 @@ import {
   setUserProfile,
 } from "@/redux/features/interfaceSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { Chat } from "@mui/icons-material";
-import { BiUserCircle } from "react-icons/bi";
+import { Chat, Search } from "@mui/icons-material";
 
 function ChatListHeader() {
   const dispatch = useAppDispatch();
@@ -24,9 +23,8 @@ function ChatListHeader() {
             <Avatar type="sm" image={userData.profilePicture} />
           </div>
           <div className="flex gap-6">
-            <BiUserCircle
+            <Search
               className="text-[var(--panel-header-icon)] cursor-pointer text-2xl"
-              titleaccess="Search users"
               onClick={() => dispatch(setSearchPage())}
             />
             <Chat

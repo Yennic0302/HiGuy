@@ -4,12 +4,22 @@
 
 import { setUserProfile } from "@/redux/features/interfaceSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import deleteJWT from "@/services/deleteJWT.service";
 import { Close } from "@mui/icons-material";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function UserProfile() {
   const userData = useAppSelector((state) => state.userReducer.userData);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  const handleLogOut = async () => {
+    const response = await deleteJWT();
+    if (response?.data.ok) {
+      router.push("/auth/sign-in");
+    }
+  };
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-[--bg-modal] flex  justify-center z-[100]">
@@ -58,7 +68,10 @@ export default function UserProfile() {
                 </span>
               </p>
               <nav>
-                <button className="px-4 py-2 cursor-pointer bg-red-500 rounded-sm">
+                <button
+                  onClick={handleLogOut}
+                  className="px-4 py-2 cursor-pointer bg-red-500 rounded-sm"
+                >
                   Logout
                 </button>
               </nav>
