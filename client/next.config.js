@@ -3,7 +3,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        source: "/auth/sign-in",
+        source: "./auth/sign-in",
         headers: [
           {
             key: "Cross-Origin-Embedder-Policy",
@@ -12,7 +12,7 @@ const nextConfig = {
         ],
       },
       {
-        source: "/auth/sign-up",
+        source: "./auth/sign-up",
         headers: [
           {
             key: "Cross-Origin-Embedder-Policy",
