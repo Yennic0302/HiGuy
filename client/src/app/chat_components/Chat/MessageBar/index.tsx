@@ -8,7 +8,7 @@ import { addMessage } from "@/redux/features/messageSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { createImgMessage, createMessage } from "@/services/message.service";
 import { Attachment, EmojiEmotions, Mic, Send } from "@mui/icons-material";
-import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
+import EmojiPicker, { EmojiClickData, Theme } from "emoji-picker-react";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { AiFillDelete, AiOutlineReload } from "react-icons/ai";
@@ -192,7 +192,10 @@ export default function MessageBar() {
                 />
                 {showEmojiPicker && (
                   <div ref={emojiRef} className="absolute bottom-24  z-40">
-                    <EmojiPicker onEmojiClick={handleEmojiClick} theme="dark" />
+                    <EmojiPicker
+                      onEmojiClick={handleEmojiClick}
+                      theme={Theme.DARK}
+                    />
                   </div>
                 )}
                 {prevImage && (

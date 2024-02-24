@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ReactDOM from "react-dom";
 
 function ModalDiscardImage({
@@ -24,7 +25,7 @@ function ModalDiscardImage({
   );
   return ReactDOM.createPortal(
     component,
-    document.getElementById("modal-discard-media")
+    document.getElementById("modal-discard-media") as HTMLElement
   );
 }
 
