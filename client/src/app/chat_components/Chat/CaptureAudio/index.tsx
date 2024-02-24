@@ -185,7 +185,7 @@ export default function CaptureAudio({
     if (isNaN(time)) return "00:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes.toString().padStart(2, "0")}: ${seconds
+    return `${minutes.toString().padStart(2, "0")}:${seconds
       .toString()
       .padStart(2, "0")}`;
   };
@@ -204,7 +204,7 @@ export default function CaptureAudio({
       </div>
       <div className="mx-4 py-2 px-4 text-[--text-primary] text-lg flex gap-3 justify-center items-center bg-[--search-input-container-background] rounded-full drop-shadow-lg">
         {isRecording ? (
-          <div className="text-red-500 animate-pulse 2-60 text-center">
+          <div className="text-red-500 animate-pulse w-24   sm:w-60 text-center">
             recording <span>{recordingDuration}</span>
           </div>
         ) : (
@@ -220,7 +220,11 @@ export default function CaptureAudio({
             )}
           </div>
         )}
-        <div className="w-60" ref={waveFormRef} hidden={isRecording} />
+        <div
+          className=" max-w-24 w-20  sm:w-60"
+          ref={waveFormRef}
+          hidden={isRecording}
+        />
 
         {recordedAudio && isPlaying && (
           <span>{formatTime(currentPlaybackTime)}</span>
@@ -240,7 +244,7 @@ export default function CaptureAudio({
       </div>
       <div>
         <Send
-          className={`   mr-4 ${
+          className={`sm:mr-4 ${
             recordedAudio
               ? " text-[--panel-header-icon] cursor-pointer"
               : "text-gray-500 cursor-not-allowed"

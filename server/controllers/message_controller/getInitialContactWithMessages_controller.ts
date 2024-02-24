@@ -69,14 +69,14 @@ const getInitialContactWithMessages = async (
 
           if (isSender) {
             user = {
-              ...user,
               ...msg.reciever,
+              ...user,
               totalUnreadMessages: 0,
             };
           } else {
             user = {
-              ...user,
               ...msg.sender,
+              ...user,
               totalUnreadMessages: msg.messageStatus !== "read" ? 1 : 0,
             };
           }

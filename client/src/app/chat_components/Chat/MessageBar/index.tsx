@@ -84,6 +84,39 @@ export default function MessageBar() {
     }
   };
 
+  const sendMessage = async () => {
+    const responseMessage = await createMessage({
+      to: currentChatData!.id,
+      from: userData!.id,
+      message,
+    });
+    dispatch(addMessage(responseMessage?.data.message));
+    dispatch(updateContactChat(responseMessage?.data.message));
+
+    if (socket != undefined) {
+      socket.emit("send-message", {
+        to: currentChatData!.id,
+        from: userData!.id,
+        message: responseMessage?.data.message,
+      });
+    }
+    setMessage("");
+  };
+  const activateInput = () => {
+    const data = document.getElementById("photo-picker");
+    if (data && grabPhoto) {
+      data.click();
+    }
+  };
+  const sendByEnter = (e: any) => {
+    if (e.key == "Enter") {
+      console.log("enter");
+      console.log(message, prevImage);
+      if (message != "" && prevImage == null) sendMessage();
+      if (prevImage != null && message == "") sendImgMessage();
+    }
+  };
+
   useEffect(() => {
     const handleOutsideClick = (e: any) => {
       if (btnEmojiRef && !btnEmojiRef.current?.contains(e.target))
@@ -122,31 +155,6 @@ export default function MessageBar() {
     setMessage((msg) => (msg += emoji.emoji));
   };
 
-  const sendMessage = async () => {
-    const responseMessage = await createMessage({
-      to: currentChatData!.id,
-      from: userData!.id,
-      message,
-    });
-    dispatch(addMessage(responseMessage?.data.message));
-    dispatch(updateContactChat(responseMessage?.data.message));
-
-    if (socket != undefined) {
-      socket.emit("send-message", {
-        to: currentChatData!.id,
-        from: userData!.id,
-        message: responseMessage?.data.message,
-      });
-    }
-    setMessage("");
-  };
-  const activateInput = () => {
-    const data = document.getElementById("photo-picker");
-    if (data && grabPhoto) {
-      data.click();
-    }
-  };
-
   useEffect(() => {
     activateInput();
   }, [grabPhoto]);
@@ -168,7 +176,10 @@ export default function MessageBar() {
   return (
     <>
       {currentChatData && (
-        <div className="bg-[var(--panel-header-background)] h-20 px-4 flex items-center gap-6 relative">
+        <div
+          onKeyDown={sendByEnter}
+          className="bg-[var(--panel-header-background)] h-20 px-4 flex items-center gap-6 relative"
+        >
           {!showAudioRecorder && (
             <>
               <div className="flex gap-6 ">

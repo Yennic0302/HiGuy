@@ -98,7 +98,7 @@ export default function AudioMessage({
 
   return (
     <div
-      className={` flex items-center gap-5 text-[--text-primary] px-4 py-4 text-sm rounded-md ${
+      className={` flex items-center gap-5 text-[--text-primary] px-4 py-4 text-sm rounded-md w-ful  ${
         message.senderId === currentChatData?.id
           ? "bg-[--incoming-background]"
           : "outgoing-background"
@@ -106,7 +106,7 @@ export default function AudioMessage({
     >
       <div>
         <Avatar
-          type="lg"
+          type="sm"
           image={
             message.senderId === userData!.id
               ? userData!.profilePicture
@@ -124,7 +124,7 @@ export default function AudioMessage({
       </div>
 
       <div className="relative">
-        <div className="w-60" ref={waveFormRef} />
+        <div className=" w-44 sm:w-60" ref={waveFormRef} />
         <div className="text-[--bubble-meta] text-[11px] pt-1 flex justify-between absolute bottom-[-22px] w-full">
           <span>
             {formatTime(isPlaying ? currentPlaybackTime : totalDuration)}

@@ -64,10 +64,10 @@ const getInitialContactWithMessages = (req, res, next) => __awaiter(void 0, void
                         totalUnreadMessages: 0,
                     };
                     if (isSender) {
-                        user = Object.assign(Object.assign(Object.assign({}, user), msg.reciever), { totalUnreadMessages: 0 });
+                        user = Object.assign(Object.assign(Object.assign({}, msg.reciever), user), { totalUnreadMessages: 0 });
                     }
                     else {
-                        user = Object.assign(Object.assign(Object.assign({}, user), msg.sender), { totalUnreadMessages: msg.messageStatus !== "read" ? 1 : 0 });
+                        user = Object.assign(Object.assign(Object.assign({}, msg.sender), user), { totalUnreadMessages: msg.messageStatus !== "read" ? 1 : 0 });
                     }
                     users.set(calculatedId, Object.assign({}, user));
                 }
