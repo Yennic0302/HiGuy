@@ -1,4 +1,4 @@
-export const HOST = "https://higuy.onrender.com/";
+export const HOST = "https://higuy.onrender.com";
 export const AUTH_ROUTE = `${HOST}/api/auth`;
 export const ONBOARD_ROUTE = `${HOST}/api/onboarding`;
 export const CONTACTS_ROUTE = `${HOST}/api/contacts`;
