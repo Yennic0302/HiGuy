@@ -59,7 +59,12 @@ const signUpGoogle = async (req: Request, res: Response) => {
 
     return res
       .status(200)
-      .cookie("HIGUY_TOKEN", token, { httpOnly: true })
+      .cookie("HIGUY_TOKEN", token, {
+        httpOnly: true,
+        secure: true,
+        SameSite: "None",
+        Partitioned: true,
+      })
       .json({ ok: true, statusText: "register completed", userData });
   } catch (e: any) {
     console.log(e);
