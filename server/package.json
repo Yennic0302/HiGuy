@@ -2,10 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/index.js",
+  "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
-    "dev": "ts-node-dev ./src",
+    "build": "tsc",
     "start": "node ./build/index.js"
   },
   "keywords": [],
