@@ -63,7 +63,7 @@ const signUpGoogle = async (req: Request, res: Response) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        Partitioned: true,
+        partitioned: true,
       })
       .json({ ok: true, statusText: "register completed", userData });
   } catch (e: any) {
