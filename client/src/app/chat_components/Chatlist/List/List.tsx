@@ -32,7 +32,7 @@ function List() {
   }, [userData]);
 
   return (
-    <div className="relative h-[85vh] bg-[var(--search-input-container-background)] flex-auto overflow-auto max-h-full custom-scrollbar">
+    <div className="relative h-[80vh] bg-[var(--search-input-container-background)] flex-auto overflow-auto max-h-full custom-scrollbar">
       {contactsChats.length > 0 ? (
         contactsChats.map((contact: ContactInfo) => (
           <ChatLIstItem
