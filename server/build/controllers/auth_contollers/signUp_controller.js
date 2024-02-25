@@ -103,7 +103,11 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }, process.env.JWT_KEY_WORD);
         return res
             .status(200)
-            .cookie("HIGUY_TOKEN", token, { httpOnly: true })
+            .cookie("HIGUY_TOKEN", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "none",
+        })
             .json({ ok: true, statusText: "register completed", userData });
     }
     catch (e) {

@@ -19,7 +19,7 @@ const addAudioMessage = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
     try {
         if (req.file) {
             const date = Date.now();
-            let fileName = "uploads/audio/" + date + req.file.originalname;
+            let fileName = "./uploads/audio/" + date + req.file.originalname;
             (0, fs_1.renameSync)(req.file.path, fileName);
             const { from, to } = req.query;
             if (from && to) {

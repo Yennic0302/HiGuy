@@ -9,8 +9,8 @@ import {
 } from "../controllers/message_controller";
 
 const messageRouter = express.Router();
-const uploadImage = multer({ dest: "uploads/images/" });
-const uploadAudio = multer({ dest: "uploads/audio/" });
+const uploadImage = multer({ dest: "./uploads/images/" });
+const uploadAudio = multer({ dest: "./uploads/audio/" });
 
 messageRouter.post("/create", createMessage_controller);
 messageRouter.get("/get/:from/:to", getMessages_controller);

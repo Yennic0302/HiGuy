@@ -22,8 +22,8 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
 app.use(cors({ origin: process.env.FRONT_HOST, credentials: true }));
 
-app.use("/uploads/images", express.static("./uploads/images"));
-app.use("/uploads/audio", express.static("./uploads/audio"));
+app.use("./uploads/images", express.static("./uploads/images"));
+app.use("./uploads/audio", express.static("./uploads/audio"));
 
 app.use("/api/auth", authRouter);
 app.use("/api/onboarding", onBoardingRouter);

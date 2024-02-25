@@ -90,6 +90,8 @@ const signIn = (req, res, next) => __awaiter(void 0, void 0, void 0, function* (
                 .status(202)
                 .cookie("HIGUY_TOKEN", token, {
                 httpOnly: true,
+                secure: true,
+                sameSite: "none",
             })
                 .json({ ok: true, statusText: "user logged", userData });
         }

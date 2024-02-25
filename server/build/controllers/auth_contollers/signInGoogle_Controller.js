@@ -45,7 +45,11 @@ const signInGoogle = (req, res, next) => __awaiter(void 0, void 0, void 0, funct
             const { password: userPassword } = user, userData = __rest(user, ["password"]);
             return res
                 .status(200)
-                .cookie("HIGUY_TOKEN", token, { httpOnly: true })
+                .cookie("HIGUY_TOKEN", token, {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+            })
                 .json({ ok: true, statusText: "user loged", userData });
         }
     }
