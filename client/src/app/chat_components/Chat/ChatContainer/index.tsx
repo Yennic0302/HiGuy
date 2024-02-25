@@ -3,7 +3,7 @@
 import { Loader } from "@/global_components";
 import { useAppSelector } from "@/redux/hooks";
 import { calculateTime } from "@/utils/CalculateTime";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { AudioMessage, ImageMessage, MessageStatus } from "..";
 
 export default function ChatContainer() {
@@ -14,6 +14,9 @@ export default function ChatContainer() {
   const userData = useAppSelector((state) => state.userReducer.userData);
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   return (
     <>
       {currentChatData ? (
