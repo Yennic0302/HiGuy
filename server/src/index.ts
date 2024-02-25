@@ -2,6 +2,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import fs from "node:fs";
 import { Server } from "socket.io";
 import {
   authRouter,
@@ -11,6 +12,11 @@ import {
   profileRouter,
 } from "../routes";
 import getPrismaInstance from "./prismaClient";
+
+if (!fs.existsSync("./updoads/images") && !fs.existsSync("./uploads/audio")) {
+  fs.mkdirSync("./uploads/images");
+  fs.mkdirSync("./uploads/audio");
+}
 
 dotenv.config();
 

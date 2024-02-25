@@ -16,9 +16,14 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const express_1 = __importDefault(require("express"));
+const node_fs_1 = __importDefault(require("node:fs"));
 const socket_io_1 = require("socket.io");
 const routes_1 = require("../routes");
 const prismaClient_1 = __importDefault(require("./prismaClient"));
+if (!node_fs_1.default.existsSync("./updoads/images") && !node_fs_1.default.existsSync("./uploads/audio")) {
+    node_fs_1.default.mkdirSync("./uploads/images");
+    node_fs_1.default.mkdirSync("./uploads/audio");
+}
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: "50mb" }));
