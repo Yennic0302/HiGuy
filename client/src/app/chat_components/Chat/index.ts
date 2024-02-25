@@ -2,7 +2,6 @@ export { default as AudioMessage } from "./AudioMessage";
 export { default as CaptureAudio } from "./CaptureAudio";
 export { default as Chat } from "./Chat";
 export { default as ChatContainer } from "./ChatContainer";
-export { default as ChatGroupContainer } from "./ChatGroupContainer";
 export { default as ChatHeader } from "./ChatHeader";
 export { default as ImageMessage } from "./ImageMessage";
 export { default as MessageBar } from "./MessageBar";
