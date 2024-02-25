@@ -83,7 +83,7 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
         .cookie("HIGUY_TOKEN", token, {
           httpOnly: true,
           secure: true,
-          SameSite: "None",
+          sameSite: "none",
           Partitioned: true,
         })
         .json({ ok: true, statusText: "user logged", userData });
