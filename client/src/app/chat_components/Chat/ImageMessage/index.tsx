@@ -27,7 +27,7 @@ export default function ImageMessage({
       <img
         src={`${HOST}/${message.message}`}
         alt="message-image"
-        className="rounded-lg"
+        className="rounded-lg w-[300px] "
       />
       <div className=" flex justify-end pt-2 bottom-1 right-1 items-center gap-1">
         <span className="text-[var(--bubble-meta)] text-[11px] pt-1 min-w-fit">
