@@ -24,7 +24,7 @@ function SearchUser() {
 
   return (
     <div className="h-full relative flex flex-col">
-      <div className=" fixed w-full flex items-center h-16 px-4 py-3">
+      <div className="  w-full flex items-center h-[10vh] px-4 py-3">
         <div className="flex items-center gap-2 text-[--text-primary]">
           <button onClick={() => {}}>
             <ArrowBack
