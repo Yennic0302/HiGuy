@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 "use client";
 import { setUserData } from "@/redux/features/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
@@ -51,8 +50,6 @@ export default function RootLayout({
     };
 
     checkSignedInUser();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
