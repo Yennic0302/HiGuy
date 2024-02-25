@@ -26,6 +26,7 @@ export default function Home() {
           })
         );
       } else {
+        console.log("error");
         router.push("/auth/sign-in");
       }
     };
