@@ -21,13 +21,13 @@ function ChatList() {
   return (
     <div className="relative bg-[var(--panel-header-background)] flex flex-col max-h-screen z-20">
       {!contactsPage && !searchPage && (
-        <>
+        <div className="relative">
           <ChatListHeader />
-          <h2 className="text-2xl relative top-16 sm:top-0  w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
+          <h2 className="text-2xl relative top-[10vh] sm:top-0  w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
             Chats
           </h2>
           <List />
-        </>
+        </div>
       )}
       {contactsPage && <Contacts />}
       {searchPage && <SearchUser />}

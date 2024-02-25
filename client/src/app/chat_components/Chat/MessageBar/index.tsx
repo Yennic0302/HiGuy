@@ -178,7 +178,7 @@ export default function MessageBar() {
       {currentChatData && (
         <div
           onKeyDown={sendByEnter}
-          className="bg-[var(--panel-header-background)] h-20 px-4 flex items-center gap-6 relative"
+          className="bg-[var(--panel-header-background)] h-[10vh] px-4 flex items-center gap-6 relative"
         >
           {!showAudioRecorder && (
             <>
