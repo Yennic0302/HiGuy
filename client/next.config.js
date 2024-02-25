@@ -12,7 +12,7 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: "hi-guy.vercel.app/",
+        hostname: "hi-guy.vercel.app",
       },
     ],
   },
