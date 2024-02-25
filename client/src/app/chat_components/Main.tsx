@@ -94,11 +94,9 @@ export default function Main() {
       });
 
       socket.current.on("user-connected", (contactId: string) => {
-        console.log("ejecutanto");
         dispatch(setOnlineContact(contactId));
       });
       socket.current.on("user-diconected", (contactId: string) => {
-        console.log("desconectando");
         dispatch(removeOnlineContact(contactId));
       });
       setSocketEvent(true);

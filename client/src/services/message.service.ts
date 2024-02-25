@@ -129,7 +129,6 @@ export const getInitialContactsWithMessages = async (from: string) => {
     });
 
     if (result) {
-      console.log(result);
       return result;
     }
 
