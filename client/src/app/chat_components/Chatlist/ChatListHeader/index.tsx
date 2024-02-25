@@ -15,7 +15,7 @@ function ChatListHeader() {
   return (
     <>
       {userData && (
-        <div className="h-16 px-4 fixed py-3 flex justify-between items-center">
+        <div className="h-16 px-4 py-3 flex justify-between items-center">
           <div
             onClick={() => dispatch(setUserProfile())}
             className="cursor-pointer"
