@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 "use client";
 import { setUserData } from "@/redux/features/userSlice";
 import { useAppDispatch } from "@/redux/hooks";
@@ -42,6 +43,7 @@ export default function RootLayout({
             setUserData({
               isLoggedIn: true,
               userData: checkOutFinished.data.userData,
+              // eslint-disable-next-line prettier/prettier
             })
           );
           return;
