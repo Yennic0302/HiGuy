@@ -38,7 +38,7 @@ const signInGoogle = async (
         .cookie("HIGUY_TOKEN", token, {
           httpOnly: true,
           secure: true,
-          SameSite: "None",
+          sameSite: "None",
           Partitioned: true,
         })
         .json({ ok: true, statusText: "user loged", userData });
