@@ -1,7 +1,5 @@
 /* eslint-disable import/extensions */
 "use client";
-import { setUserData } from "@/redux/features/userSlice";
-import { useAppDispatch } from "@/redux/hooks";
 import Providers from "@/redux/providers";
 import checkUser from "@/services/checkUser.service";
 import { Roboto } from "next/font/google";
@@ -23,7 +21,6 @@ export default function RootLayout({
 }) {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setLoading(true);
@@ -39,13 +36,6 @@ export default function RootLayout({
         if (checkOutFinished.data.userData.isNewUser) {
           return router.push("/auth/onboarding");
         } else {
-          dispatch(
-            setUserData({
-              isLoggedIn: true,
-              userData: checkOutFinished.data.userData,
-              // eslint-disable-next-line prettier/prettier
-            })
-          );
           return;
         }
       }
