@@ -23,10 +23,12 @@ function ChatList() {
       {!contactsPage && !searchPage && (
         <div className="relative">
           <ChatListHeader />
-          <h2 className="text-2xl relative top-[10vh] sm:top-0  w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
-            Chats
-          </h2>
-          <List />
+          <div className="pt-[10vh] pt:top-0">
+            <h2 className="text-2xl relative h-[5vh] w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
+              Chats
+            </h2>
+            <List />
+          </div>
         </div>
       )}
       {contactsPage && <Contacts />}
