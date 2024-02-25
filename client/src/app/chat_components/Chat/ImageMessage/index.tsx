@@ -4,7 +4,6 @@ import { useAppSelector } from "@/redux/hooks";
 import { MessageFromBackEnd } from "@/types/message";
 import { calculateTime } from "@/utils/CalculateTime";
 import { HOST } from "@/utils/routes";
-import Image from "next/image";
 import { MessageStatus } from "..";
 
 export default function ImageMessage({
@@ -25,12 +24,10 @@ export default function ImageMessage({
           : "outgoing-background"
       } `}
     >
-      <Image
+      <img
         src={`${HOST}/${message.message}`}
         alt="message-image"
         className="rounded-lg"
-        height={300}
-        width={300}
       />
       <div className=" flex justify-end pt-2 bottom-1 right-1 items-center gap-1">
         <span className="text-[var(--bubble-meta)] text-[11px] pt-1 min-w-fit">
