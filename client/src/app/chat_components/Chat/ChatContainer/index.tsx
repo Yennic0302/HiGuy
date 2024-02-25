@@ -24,7 +24,7 @@ export default function ChatContainer() {
         <div className="h-[80vh] backdrop-blur-md bg-[--conversation-panel-background] pt-16  w-full flex-grow overflow-auto custom-scrollbar">
           <div className=" mx-2 sm:mx-10 my-6 relative bottom-0 z-40 left-0">
             <div className=" flex w-full">
-              <div className="flex flex-col justify-end w-full gap-2 overflow-auto">
+              <div className="flex flex-col justify-end w-full gap-2 ">
                 {messages?.map((message) => (
                   <div key={message.id} ref={scrollRef}>
                     <div
