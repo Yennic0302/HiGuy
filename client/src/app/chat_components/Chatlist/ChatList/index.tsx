@@ -23,7 +23,7 @@ function ChatList() {
       {!contactsPage && !searchPage && (
         <>
           <ChatListHeader />
-          <h2 className="text-2xl pt-16 sm:pt-0  w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
+          <h2 className="text-2xl relative top-16 sm:top-0  w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
             Chats
           </h2>
           <List />

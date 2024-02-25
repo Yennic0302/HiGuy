@@ -23,8 +23,8 @@ function SearchUser() {
   };
 
   return (
-    <div className="h-full flex flex-col">
-      <div className=" flex items-center h-16 px-4 py-3">
+    <div className="h-full relative flex flex-col">
+      <div className=" fixed w-full flex items-center h-16 px-4 py-3">
         <div className="flex items-center gap-2 text-[--text-primary]">
           <button onClick={() => {}}>
             <ArrowBack
@@ -75,10 +75,12 @@ function SearchUser() {
             </div>
           </div>
         </div>
-        {users &&
-          users.map((cont) => {
-            return <SearchUserListItem data={cont} key={cont.id} />;
-          })}
+        <div className="relative top-16">
+          {users &&
+            users.map((cont) => {
+              return <SearchUserListItem data={cont} key={cont.id} />;
+            })}
+        </div>
       </div>
     </div>
   );
