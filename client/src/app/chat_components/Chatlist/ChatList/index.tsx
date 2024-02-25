@@ -19,11 +19,11 @@ function ChatList() {
   // }, [contactsPage]);
 
   return (
-    <div className="bg-[var(--panel-header-background)] flex flex-col max-h-screen z-20">
+    <div className="relative bg-[var(--panel-header-background)] flex flex-col max-h-screen z-20">
       {!contactsPage && !searchPage && (
         <>
           <ChatListHeader />
-          <h2 className="text-2xl w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
+          <h2 className="text-2xl pt-16 w-full text-[--text-primary] p-4 bg-[--search-input-container-background]">
             Chats
           </h2>
           <List />
