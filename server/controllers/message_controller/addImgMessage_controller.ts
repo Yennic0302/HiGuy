@@ -10,7 +10,7 @@ const addImgMessage = async (
   try {
     if (req.file) {
       const date = Date.now();
-      let fileName = "./uploads/images/" + date + req.file.originalname;
+      let fileName = "uploads/images/" + date + req.file.originalname;
       renameSync(req.file.path, fileName);
       const { from, to } = req.query;
       if (from && to) {
