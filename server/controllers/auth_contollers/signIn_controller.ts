@@ -84,7 +84,6 @@ const signIn = async (req: Request, res: Response, next: NextFunction) => {
           httpOnly: true,
           secure: true,
           sameSite: "none",
-          partitioned: true,
         })
         .json({ ok: true, statusText: "user logged", userData });
     }

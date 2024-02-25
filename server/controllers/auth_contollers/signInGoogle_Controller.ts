@@ -39,7 +39,6 @@ const signInGoogle = async (
           httpOnly: true,
           secure: true,
           sameSite: "none",
-          partitioned: true,
         })
         .json({ ok: true, statusText: "user loged", userData });
     }
