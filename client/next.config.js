@@ -11,7 +11,7 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
-        protocol: "http",
+        protocol: "https",
         hostname: "hi-guy.vercel.app",
       },
     ],
