@@ -20,7 +20,7 @@ export default function ChatHeader() {
   return (
     <>
       {currentChatData && (
-        <div className="h-16 px-4 py-3 z-10 flex justify-between items-center bg-[var(--panel-header-background)]">
+        <div className="h-16 px-4 py-3  z-10 flex justify-between items-center bg-[var(--panel-header-background)]">
           <div className="flex items-center justify-center gap-6">
             <span className=" hidden sm:block h-8 w-8">
               <Close
