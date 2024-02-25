@@ -22,7 +22,6 @@ function List() {
     const fetchToInitialContacts = async () => {
       const response = await getInitialContactsWithMessages(userData!.id);
       if (response?.data.ok) {
-        console.log(response.data.onlineUsers);
         dispatch(setContactsChats(response.data.users));
         dispatch(setOnlineContacts(response.data.onlineUsers));
       }
