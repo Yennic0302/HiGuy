@@ -11,3 +11,7 @@
   padding-left: 1rem !important;
 }
 
+.MuiFormLabel-root {
+    color: var(--text-primary) !important;
+}
+
