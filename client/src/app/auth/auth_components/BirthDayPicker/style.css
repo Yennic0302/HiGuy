@@ -94,6 +94,6 @@
   background-color: var(--dropdown-background) !important;
 }
 
-.MuiButtonBase-root{
+.MuiSvgIcon-root{
   color: var(--text-primary) !important;
 }
