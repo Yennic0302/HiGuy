@@ -93,3 +93,7 @@
 .css-1jsy6pn-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
   background-color: var(--dropdown-background) !important;
 }
+
+.MuiButtonBase-root{
+  color: var(--text-primary) !important;
+}

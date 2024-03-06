@@ -97,7 +97,6 @@ const Onboarding = () => {
     const response = await setOnboardRequest(dataToSend, userData?.id);
 
     if (usernameError || descriptionError != "") {
-      console.log("ejecutanti");
       return;
     }
 
@@ -182,7 +181,7 @@ const Onboarding = () => {
                     </div>
 
                     <div>
-                      <FormLabel id="privacy">Profile privacy</FormLabel>
+                      <FormLabel className="text-[--text-primary]" id="privacy">Profile privacy</FormLabel>
                       <RadioGroup
                         defaultValue="public"
                         name="privacy"
